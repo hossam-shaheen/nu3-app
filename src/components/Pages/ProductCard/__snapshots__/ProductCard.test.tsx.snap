@@ -8,9 +8,10 @@ exports[`ProductCard : Snapshot 1`] = `
     className="product-card"
   >
     <div
-      className="loading"
+      className="loader"
+      data-testid="loader"
     >
-      Loading ...
+      Loading...
     </div>
     <button
       className="back"

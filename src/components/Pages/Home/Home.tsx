@@ -4,9 +4,11 @@ import Products from '../../Components/ProductsCards/Products/Products';
 import SearchBar from '../../Components/Shared/SearchBar/SearchBar';
 import ResultCount from '../../Components/Shared/ResultCount/ResultCount';
 import Sort from '../../Components/Shared/Sort/Sort';
+import Loader from '../../Components/Shared/Loader/Loader';
 import { SEARCH_BASE_URL } from '../../../constants/APIs';
 import classes from "./Home.module.css";
 import useDebounce from 'src/customHook/useDebounce';
+import Error from 'src/components/Components/Shared/Error/Error';
 
 export const Home: FunctionComponent = (): JSX.Element => {
 
@@ -115,9 +117,11 @@ export const Home: FunctionComponent = (): JSX.Element => {
             <Products products={products.items} />
         </div>}
 
-        {(error && !loading && !noResults && products.items.length === 0) && <div className='error-message'><i className={error?.icon}></i>{error?.message}</div>}
-        {(!error && loading && !noResults && products.items.length === 0) && <div className='loading'>Loading...</div>}
-        {(!error && !loading && noResults && products.items.length === 0) && <div className='no-results'>{noResults}</div>}
+        {(error && !loading && !noResults && products.items.length === 0) && <Error errorClass="error-message" error={error} />}
+        {(!error && loading && !noResults && products.items.length === 0) && <Loader />}
+        {(!error && !loading && noResults && products.items.length === 0) && <Error errorClass="no-results" error={{
+            message: noResults
+        }} />}
     </>
 }
 export default Home;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error "Failed to Fetch Data": Snapshot 1`] = `
+<div
+  className="error-message"
+>
+  <i
+    className="fas fa-exclamation-triangle"
+  />
+  Failed to fetch data
+</div>
+`;
+
+exports[`Error "No results found": Snapshot 1`] = `
+<div
+  className="error-message"
+>
+  <i
+    className="fas fa-exclamation-triangle"
+  />
+  Failed to fetch data
+</div>
+`;

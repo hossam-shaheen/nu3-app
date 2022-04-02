@@ -64,6 +64,6 @@ export interface OptionsType {
 }
 
 export interface ErrorType {
-    icon: string,
+    icon?: string,
     message: string
 }

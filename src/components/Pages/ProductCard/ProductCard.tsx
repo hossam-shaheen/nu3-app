@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import ProductAttribute from 'src/components/Components/ProductCard/ProductAttribute/ProductAttribute';
 import ProductGallery from 'src/components/Components/ProductCard/ProductGallery/ProductGallery';
 import ProductVariants from 'src/components/Components/ProductCard/ProductVariants/ProductVariants';
+import Error from 'src/components/Components/Shared/Error/Error';
+import Loader from 'src/components/Components/Shared/Loader/Loader';
 import QrCode from 'src/components/Components/Shared/QrCode/QrCode';
 import { ErrorType, ProductAttributeProps, ProductInfoType, ProductVariantsProps } from 'src/interfaces/interfaces';
 import { PRODUCT_BASE_URL } from '../../../constants/APIs';
@@ -65,8 +67,8 @@ export const ProductCard: FunctionComponent = (): JSX.Element => {
 
             </>)}
 
-            {(error && !productInfo) && <div className='error-message'><i className={error?.icon}></i>{error?.message}</div>}
-            {!error && !productInfo && <div className='loading'>Loading ...</div>}
+            {(error && !productInfo) && <Error errorClass="error-message" error={error} />}
+            {!error && !productInfo && <Loader />}
 
             <button className={classes["back"]} onClick={back} data-testid="back"><i className="fas fa-chevron-left"></i></button>
         </div>

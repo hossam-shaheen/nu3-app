@@ -61,39 +61,3 @@ button {
 button:hover {
   background-color: var(--primaryDark);
 }
-
-.error-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  font-size: 28px;
-  color: var(--error);
-  width: 100%;
-}
-
-.error-message i {
-  color: var(--error);
-  margin-right: 8px;
-}
-
-.loading,
-.no-results {
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  font-size: 28px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.loading {
-  color: var(--secondary);
-}
-
-.no-results {
-  color: var(--darkGray);
-}
