@@ -18,7 +18,9 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 test('Home type search and products should be displayed : Renders', () => {
-    render(<Home />);
+    render(<BrowserRouter>
+        <Home />
+    </BrowserRouter>);
 
     const searchInput = screen.getByPlaceholderText("Search for a product");
     expect(searchInput).toBeInTheDocument();
@@ -49,7 +51,9 @@ test('Home type in search and 1 result should be displayed in the document: Rend
 
 
 test('Home : Snapshot', () => {
-    const component = renderer.create(<Home />);
+    const component = renderer.create(<BrowserRouter>
+        <Home />
+    </BrowserRouter>);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });

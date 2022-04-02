@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, useEffect } from 'react';
+import { FunctionComponent, useState, useEffect, useCallback } from 'react';
 import { ErrorType, ProductsType } from 'src/interfaces/interfaces';
 import Products from '../../Components/ProductsCards/Products/Products';
 import SearchBar from '../../Components/Shared/SearchBar/SearchBar';
@@ -7,6 +7,7 @@ import Sort from '../../Components/Shared/Sort/Sort';
 import { SEARCH_BASE_URL } from '../../../constants/APIs';
 import classes from "./Home.module.css";
 import useDebounce from 'src/customHook/useDebounce';
+import { useSearchParams } from 'react-router-dom';
 
 export const Home: FunctionComponent = (): JSX.Element => {
 
@@ -18,36 +19,56 @@ export const Home: FunctionComponent = (): JSX.Element => {
     const [error, setError] = useState<ErrorType | null>(null);
     const [noResults, setNoResults] = useState<string>("");
     const [searchTerm, setSearchTerm] = useState<string>("");
-    const debouncedValue = useDebounce<string>(searchTerm, 500)
+    const debouncedValue = useDebounce<string>(searchTerm, 500);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchQuery = searchParams.get("searchQuery");
+
+    const fetchSearchResults = useCallback(async (searchKeyWord: string): Promise<void> => {
+        setError(null);
+        if (searchKeyWord.length > 1) {
+            setLoading(true);
+            try {
+                const response = await fetch(`${SEARCH_BASE_URL}`);
+                const data = await response.json();
+                validateResults(data.items)
+                getSearchResult(searchKeyWord, data);
+            } catch (error) {
+                setError({
+                    icon: "fas fa-exclamation-triangle",
+                    message: "Failed to fetch data"
+                });
+            }
+            setLoading(false);
+        } else {
+            setProducts({
+                items: [],
+                totalItems: 0
+            });
+            setNoResults("");
+        }
+
+    }, [])
+
+
+    useEffect(() => {
+
+        if (searchQuery) {
+            fetchSearchResults(searchQuery)
+        } else {
+            setSearchTerm("");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debouncedValue])
+
 
     useEffect(() => {
         (async () => {
-            setError(null);
-            if (searchTerm.length > 1) {
-                setLoading(true);
-                try {
-                    const response = await fetch(`${SEARCH_BASE_URL}`);
-                    const data = await response.json();
-                    validateResults(data.items)
-                    getSearchResult(searchTerm, data);
-                } catch (error) {
-                    setError({
-                        icon: "fas fa-exclamation-triangle",
-                        message: "Failed to fetch data"
-                    });
-                }
-                setLoading(false);
-            } else {
-                setProducts({
-                    items: [],
-                    totalItems: 0
-                });
-                setNoResults("");
-            }
+            fetchSearchResults(searchTerm)
         })();
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedValue])
+
+
 
     const getSearchResult = (searchKeyWord: string, productResults: ProductsType): void => {
         const filteredProducts = productResults.items.filter(product => product.title.toLowerCase().includes(searchKeyWord.toLowerCase()));
@@ -75,7 +96,13 @@ export const Home: FunctionComponent = (): JSX.Element => {
 
     const onSearch = async (searchKeyWord: string) => {
         setSearchTerm(searchKeyWord);
-
+        if (searchKeyWord.length > 1) {
+            setSearchParams({
+                searchQuery: searchKeyWord
+            });
+        } else {
+            setSearchParams({});
+        }
     }
 
     const onSort = (sortKeyWord: string): void => {
@@ -111,9 +138,9 @@ export const Home: FunctionComponent = (): JSX.Element => {
             <Products products={products.items} />
         </div>}
 
-        {(error && !loading && !noResults) && <div className='error-message'><i className={error?.icon}></i>{error?.message}</div>}
-        {(!error && loading && !noResults) && <div className='loading'>Loading...</div>}
-        {(!error && !loading && noResults) && <div className='no-results'>{noResults}</div>}
+        {(error && !loading && !noResults && products.items.length === 0) && <div className='error-message'><i className={error?.icon}></i>{error?.message}</div>}
+        {(!error && loading && !noResults && products.items.length === 0) && <div className='loading'>Loading...</div>}
+        {(!error && !loading && noResults && products.items.length === 0) && <div className='no-results'>{noResults}</div>}
     </>
 }
 export default Home;
