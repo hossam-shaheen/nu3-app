@@ -13,35 +13,51 @@ export const Home: FunctionComponent = (): JSX.Element => {
         items: [],
         totalItems: 0
     });
-
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<ErrorType | null>(null);
+    const [noResults, setNoResults] = useState<string>("");
 
     const getSearchResult = (searchKeyWord: string, productResults: ProductsType): void => {
         const filteredProducts = productResults.items.filter(product => product.title.toLowerCase().includes(searchKeyWord.toLowerCase()));
         const totalFilteredItems = filteredProducts.length;
-        setProducts({
-            items: filteredProducts,
-            totalItems: totalFilteredItems
-        });
+        if (totalFilteredItems > 0) {
+            setProducts({
+                items: filteredProducts,
+                totalItems: totalFilteredItems
+            });
+        }
+    }
+
+    const validateResults = (productResults: ProductsType): void => {
+        if (productResults.totalItems > 0) {
+            setNoResults("");
+        } else {
+            setNoResults("No results found");
+        }
     }
 
     const onSearch = async (searchKeyWord: string) => {
+        setError(null);
         if (searchKeyWord.length > 1) {
+            setLoading(true);
             try {
                 const response = await fetch(`${SEARCH_BASE_URL}`);
                 const data = await response.json();
+                validateResults(data.items)
                 getSearchResult(searchKeyWord, data);
             } catch (error) {
                 setError({
                     icon: "fas fa-exclamation-triangle",
                     message: "Failed to fetch data"
-                })
+                });
             }
+            setLoading(false);
         } else {
             setProducts({
                 items: [],
                 totalItems: 0
             });
+            setNoResults("");
         }
     }
 
@@ -78,7 +94,9 @@ export const Home: FunctionComponent = (): JSX.Element => {
             <Products products={products.items} />
         </div>}
 
-        {error && <div className='error-message'><i className={error?.icon}></i>{error?.message}</div>}
+        {(error && !loading && !noResults) && <div className='error-message'><i className={error?.icon}></i>{error?.message}</div>}
+        {(!error && loading && !noResults) && <div className='loading'>Loading...</div>}
+        {(!error && !loading && noResults) && <div className='no-results'>{noResults}</div>}
     </>
 }
 export default Home;

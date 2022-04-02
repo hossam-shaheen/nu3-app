@@ -8,6 +8,7 @@
   --inputColor: #263238;
   --inputBorder: #b0bec5;
   --bodyBackground: #dee2e678;
+  --darkGray: #566066;
 }
 
 * {
@@ -77,8 +78,9 @@ button:hover {
   margin-right: 8px;
 }
 
-.loading {
-  color: var(--secondary);
+.loading,
+.no-results {
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,4 +88,12 @@ button:hover {
   font-size: 28px;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.loading {
+  color: var(--secondary);
+}
+
+.no-results {
+  color: var(--darkGray);
 }
