@@ -1,6 +1,6 @@
-# Search Product App
+# nu3-app App
 
-Search for products and sort them.
+Application for Searching for products and sort them.
 
 ## Features
 
