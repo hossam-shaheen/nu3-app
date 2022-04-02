@@ -1,33 +1,41 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import SearchBar from './SearchBar';
 
 test('SearchBar displayed in the document : Renders', () => {
-    render(<SearchBar onSearch={jest.fn()} />);
+    render(<BrowserRouter>
+        <SearchBar onSearch={jest.fn()} />
+    </BrowserRouter>);
     const searchInput = screen.getByPlaceholderText('Search for a product');;
     expect(searchInput).toBeInTheDocument();
 });
 
 test(`SearchBar didn't Type product name : Renders`, () => {
-    render(<SearchBar onSearch={jest.fn()} />);
+    render(<BrowserRouter>
+        <SearchBar onSearch={jest.fn()} />
+    </BrowserRouter>);
     const searchInput = screen.getByPlaceholderText('Search for a product');;
-    userEvent.type(searchInput, '');
+    fireEvent.change(searchInput, { target: { value: '' } })
     const searchInputValue = searchInput.getAttribute('value');
     expect(searchInputValue).toBe('');
 });
 
 
 test('SearchBar Type product name : Renders', () => {
-    render(<SearchBar onSearch={jest.fn()} />);
+    render(<BrowserRouter>
+        <SearchBar onSearch={jest.fn()} />
+    </BrowserRouter>);
     const searchInput = screen.getByPlaceholderText('Search for a product');;
-    userEvent.type(searchInput, 'nu3');
+    fireEvent.change(searchInput, { target: { value: 'nu3' } })
     const searchInputValue = searchInput.getAttribute('value');
     expect(searchInputValue).toBe('nu3');
 });
 
 test('SearchBar displayed : Snapshot', () => {
-    const component = renderer.create(<SearchBar onSearch={jest.fn()} />);
+    const component = renderer.create(<BrowserRouter>
+        <SearchBar onSearch={jest.fn()} />
+    </BrowserRouter>);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
