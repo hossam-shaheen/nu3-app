@@ -20,8 +20,7 @@ export const Home: FunctionComponent = (): JSX.Element => {
     const [noResults, setNoResults] = useState<string>("");
     const [searchTerm, setSearchTerm] = useState<string>("");
     const debouncedValue = useDebounce<string>(searchTerm, 500);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const searchQuery = searchParams.get("searchQuery");
+
 
     const fetchSearchResults = useCallback(async (searchKeyWord: string): Promise<void> => {
         setError(null);
@@ -49,26 +48,12 @@ export const Home: FunctionComponent = (): JSX.Element => {
 
     }, [])
 
-
-    useEffect(() => {
-
-        if (searchQuery) {
-            fetchSearchResults(searchQuery)
-        } else {
-            setSearchTerm("");
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [debouncedValue])
-
-
     useEffect(() => {
         (async () => {
             fetchSearchResults(searchTerm)
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedValue])
-
-
 
     const getSearchResult = (searchKeyWord: string, productResults: ProductsType): void => {
         const filteredProducts = productResults.items.filter(product => product.title.toLowerCase().includes(searchKeyWord.toLowerCase()));
@@ -96,13 +81,6 @@ export const Home: FunctionComponent = (): JSX.Element => {
 
     const onSearch = async (searchKeyWord: string) => {
         setSearchTerm(searchKeyWord);
-        if (searchKeyWord.length > 1) {
-            setSearchParams({
-                searchQuery: searchKeyWord
-            });
-        } else {
-            setSearchParams({});
-        }
     }
 
     const onSort = (sortKeyWord: string): void => {
