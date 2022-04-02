@@ -4,11 +4,13 @@ import { setupServer } from "msw/node";
 import { rest } from "msw";
 import ProductCard from './ProductCard';
 import { mockedProduct } from 'src/mockedData/MockedProduct';
+import { PRODUCT_BASE_URL } from 'src/constants/APIs';
 import { BrowserRouter } from 'react-router-dom';
 
 
+
 const server = setupServer(
-    rest.get("http://localhost:3000/data/product.json", (req, res, ctx) => {
+    rest.get(`${PRODUCT_BASE_URL}`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(mockedProduct));
     }));
 

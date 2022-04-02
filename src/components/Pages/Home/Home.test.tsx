@@ -5,10 +5,12 @@ import renderer from 'react-test-renderer';
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { mockedProducts } from 'src/mockedData/MockedProducts';
+import { SEARCH_BASE_URL } from 'src/constants/APIs';
 import Home from './Home';
 
+
 const server = setupServer(
-    rest.get("http://localhost:3000/data/search.json", (req, res, ctx) => {
+    rest.get(`${SEARCH_BASE_URL}`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(mockedProducts));
     }));
 
