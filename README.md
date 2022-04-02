@@ -1,47 +1,13 @@
-# Code Challange
+# Search Product App
 
-For your questions do not hesitate to contact us.
+Search for products and sort them.
 
-## Requirements
+## Features
 
-- Your code must be on a version control system. (GitHub, GitLab, BitBucket, etc.)
-- All React components should be placed under the folder `src/components`
+- Search for product
+- Sort Products (Random - alphabet - Low to High - High to Low)
+- navigate to a product page. 
 
-Please create the React components for the code challange below:
-
-- Create a search bar component using the mock data (e.g. http://localhost:3000/data/search.json)
-  - Start showing mocked search results after typing minimum 2 characters.
-  - Add sorting options: 
-    - Random
-    - Alphabetical
-    - Price: Low to High
-    - Price: High to Low
-- Create a product card component using the mock data (e.g. http://localhost:3000/data/product.json)
-    - Display product attributes (Attributes: title, body_html, vendor, images)
-    - Display available variants (Attributes: options, variants)
-    - Display a programmatically generated QR code for the product with the product url.
-    - Add a button to add the product to the cart
-
-## Design
-- Design is totally up to you but please make sure you have a good user experience.
-- You can check out our websites for design inspiration.
-
-## Testing 
-Each component has to be tested and the test should be done with Jest, including snapshot testing. 
-If you are not familiar testing React components, please have a look at [Jest documentation](https://jestjs.io/docs/tutorial-react).
-
-## Bonus tasks:
-Although we accept that the challange is complete without bonus tasks, we would be appreciated if you could do the following:
-- Building & documenting components in Storybook
-- Responsiveness
-- Deployment of the code challange to any provider (e.g. Netlify, Heroku, AWS, etc.)
-
-## Your contribution
-Please find two things to improve in the code challange.
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
