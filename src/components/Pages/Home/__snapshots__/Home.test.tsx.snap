@@ -1,18 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home : Snapshot 1`] = `
-<div
-  className="search-container"
->
+Array [
   <div
-    className="search-bar"
+    className="search-container"
   >
-    <input
-      onChange={[Function]}
-      placeholder="Search for a product"
-      type="text"
-      value=""
-    />
-  </div>
-</div>
+    <div
+      className="search-bar"
+    >
+      <input
+        onChange={[Function]}
+        placeholder="Search for a product"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>,
+  "",
+]
 `;

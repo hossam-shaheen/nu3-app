@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
 import { ErrorType, ProductsType } from 'src/interfaces/interfaces';
 import Products from '../../Components/ProductsCards/Products/Products';
 import SearchBar from '../../Components/Shared/SearchBar/SearchBar';
@@ -6,6 +6,7 @@ import ResultCount from '../../Components/Shared/ResultCount/ResultCount';
 import Sort from '../../Components/Shared/Sort/Sort';
 import { SEARCH_BASE_URL } from '../../../constants/APIs';
 import classes from "./Home.module.css";
+import useDebounce from 'src/customHook/useDebounce';
 
 export const Home: FunctionComponent = (): JSX.Element => {
 
@@ -16,6 +17,37 @@ export const Home: FunctionComponent = (): JSX.Element => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<ErrorType | null>(null);
     const [noResults, setNoResults] = useState<string>("");
+    const [searchTerm, setSearchTerm] = useState<string>("");
+    const debouncedValue = useDebounce<string>(searchTerm, 500)
+
+    useEffect(() => {
+        (async () => {
+            setError(null);
+            if (searchTerm.length > 1) {
+                setLoading(true);
+                try {
+                    const response = await fetch(`${SEARCH_BASE_URL}`);
+                    const data = await response.json();
+                    validateResults(data.items)
+                    getSearchResult(searchTerm, data);
+                } catch (error) {
+                    setError({
+                        icon: "fas fa-exclamation-triangle",
+                        message: "Failed to fetch data"
+                    });
+                }
+                setLoading(false);
+            } else {
+                setProducts({
+                    items: [],
+                    totalItems: 0
+                });
+                setNoResults("");
+            }
+        })();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debouncedValue])
 
     const getSearchResult = (searchKeyWord: string, productResults: ProductsType): void => {
         const filteredProducts = productResults.items.filter(product => product.title.toLowerCase().includes(searchKeyWord.toLowerCase()));
@@ -24,6 +56,11 @@ export const Home: FunctionComponent = (): JSX.Element => {
             setProducts({
                 items: filteredProducts,
                 totalItems: totalFilteredItems
+            });
+        } else {
+            setProducts({
+                items: [],
+                totalItems: 0
             });
         }
     }
@@ -37,28 +74,8 @@ export const Home: FunctionComponent = (): JSX.Element => {
     }
 
     const onSearch = async (searchKeyWord: string) => {
-        setError(null);
-        if (searchKeyWord.length > 1) {
-            setLoading(true);
-            try {
-                const response = await fetch(`${SEARCH_BASE_URL}`);
-                const data = await response.json();
-                validateResults(data.items)
-                getSearchResult(searchKeyWord, data);
-            } catch (error) {
-                setError({
-                    icon: "fas fa-exclamation-triangle",
-                    message: "Failed to fetch data"
-                });
-            }
-            setLoading(false);
-        } else {
-            setProducts({
-                items: [],
-                totalItems: 0
-            });
-            setNoResults("");
-        }
+        setSearchTerm(searchKeyWord);
+
     }
 
     const onSort = (sortKeyWord: string): void => {
