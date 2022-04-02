@@ -41,3 +41,35 @@
   font-weight: 600;
   color: var(--secondary);
 }
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .product {
+    width: calc(100% / 3 - 12px);
+  }
+
+  .product:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .product {
+    width: calc(100% / 2 - 12px);
+  }
+
+  .product:nth-child(even) {
+    margin-right: 0;
+  }
+}
+
+
+
+@media screen and (max-width: 640px) {
+  .product {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
