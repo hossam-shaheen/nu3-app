@@ -1,0 +1,14 @@
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+
+.search-bar button {
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--secondary);
+    border-radius: 0 5px 5px 0;
+    padding: 15px;
+}

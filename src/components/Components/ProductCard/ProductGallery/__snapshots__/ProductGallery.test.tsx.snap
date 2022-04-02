@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductGallery did't pass mainImage and thumbnails: Snapshot 1`] = `
+<div
+  className="product-gallery"
+>
+  <div
+    className="product-gallery-main"
+  />
+  <ul
+    className="product-gallery-thumbnails"
+  />
+</div>
+`;
+
+exports[`Products pass product : Snapshot 1`] = `
+<div
+  className="product-gallery"
+>
+  <div
+    className="product-gallery-main"
+  />
+  <ul
+    className="product-gallery-thumbnails"
+  >
+    <li
+      className=""
+      onClick={[Function]}
+    >
+      <img
+        alt="nu3 Premium Skin Beauty"
+        src="https://cdn.shopify.com/s/files/1/0095/2274/1329/products/8_252F1_252Fc_252Fc_252F81ccf47420c1f3a11717ff5ad7f93e3e13214556_21446_large.jpg?v=1620826303"
+      />
+    </li>
+    <li
+      className=""
+      onClick={[Function]}
+    >
+      <img
+        alt="nu3 Premium Hair Beauty"
+        src="https://cdn.shopify.com/s/files/1/0095/2274/1328/products/8_252F1_252Fc_252Fc_252F81ccf47420c1f3a11717ff5ad7f93e3e13214556_21446_large.jpg?v=1620826303"
+      />
+    </li>
+  </ul>
+</div>
+`;

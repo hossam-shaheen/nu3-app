@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultCount pass count 0: Snapshot 1`] = `
+<p
+  className="result-count"
+>
+  <span>
+    0
+     
+    result
+      
+  </span>
+</p>
+`;
+
+exports[`ResultCount pass count 1: Snapshot 1`] = `
+<p
+  className="result-count"
+>
+  <span>
+    1
+     
+    result
+      
+  </span>
+</p>
+`;
+
+exports[`ResultCount pass count 2: Snapshot 1`] = `
+<p
+  className="result-count"
+>
+  <span>
+    2
+     
+    results
+      
+  </span>
+</p>
+`;

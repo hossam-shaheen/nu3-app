@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Products pass Empty Array : Snapshot 1`] = `
+<ul
+  className="products"
+/>
+`;
+
+exports[`Products pass array of one product : Snapshot 1`] = `
+<ul
+  className="products"
+>
+  <li
+    className="product"
+  >
+    <div
+      className="product-image"
+    >
+      <a
+        href="/product/nu3-premium-skin-&-hair-beauty"
+        onClick={[Function]}
+      >
+        <img
+          alt="nu3 Premium Skin & Hair Beauty"
+          src="https://cdn.shopify.com/s/files/1/0095/2274/1329/products/8_252F1_252Fc_252Fc_252F81ccf47420c1f3a11717ff5ad7f93e3e13214556_21446_large.jpg?v=1620826303"
+        />
+      </a>
+    </div>
+    <div
+      className="product-content"
+    >
+      <h3>
+        nu3 Premium Skin & Hair Beauty
+      </h3>
+      <p
+        className="product-price"
+      >
+        50.99
+         €
+      </p>
+      <button>
+         
+        <i
+          className="fas fa-shopping-cart"
+        />
+         Add To Cart
+      </button>
+    </div>
+  </li>
+</ul>
+`;

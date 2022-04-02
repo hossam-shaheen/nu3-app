@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar displayed : Snapshot 1`] = `
+<div
+  className="search-bar"
+>
+  <input
+    onChange={[Function]}
+    placeholder="Search for a product"
+    type="text"
+    value=""
+  />
+  <button>
+    <i
+      className="fas fa-search"
+    />
+  </button>
+</div>
+`;

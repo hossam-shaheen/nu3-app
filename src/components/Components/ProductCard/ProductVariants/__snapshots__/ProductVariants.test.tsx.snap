@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductVariants didn't pass productVariants Props : Snapshot 1`] = `
+<div
+  className="product-variants"
+>
+  <div
+    className="product-price"
+  >
+    <p>
+      € 
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ProductVariants pass ProductAttributes Props: Snapshot 1`] = `
+<div
+  className="product-variants"
+>
+  <select
+    data-testid="product-variants-select"
+    onChange={[Function]}
+  >
+    <option
+      value="150 g"
+    >
+      150 g
+    </option>
+    <option
+      value="3 x 150 g"
+    >
+      3 x 150 g
+    </option>
+  </select>
+  <div
+    className="product-price"
+  >
+    <p>
+      € 
+    </p>
+  </div>
+</div>
+`;

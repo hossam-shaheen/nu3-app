@@ -1,0 +1,20 @@
+.search-container {
+  background-color: #fff;
+  padding: 30px 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.result-count-container {
+  background-color: #fff;
+  padding: 15px;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ccc;
+}

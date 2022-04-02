@@ -1,0 +1,32 @@
+.product-attribute {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 155px);
+}
+
+.product-title {
+    font-size: 35px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.product-vendor {
+    color: var(--secondary);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.product-vendor span:first-child {
+    color: #000;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.product-html li {
+    font-size: 14px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductAttribute didn't pass ProductAttributes Props : Snapshot 1`] = `
+<div
+  className="product-attribute"
+>
+  <div
+    className="product-info"
+  />
+</div>
+`;
+
+exports[`ProductAttribute pass ProductAttributes Props: Snapshot 1`] = `
+<div
+  className="product-attribute"
+>
+  <div
+    className="product-info"
+  >
+    <h1
+      className="product-title"
+    >
+      nu3 Bio Acerola
+    </h1>
+    <p
+      className="product-vendor"
+    >
+      <span>
+        Von
+      </span>
+      <span>
+        nu3
+      </span>
+    </p>
+    <ul
+      className="product-html"
+    >
+      <li>
+        ✓ 
+        nu3 Bio Acerola-Pulver: 100 g 
+      </li>
+      <li>
+        ✓ 
+         Natürliche Vitamin C-Quelle 
+      </li>
+      <li>
+        ✓ 
+         Ohne Zusatzstoffe wie Maltodextrin 
+      </li>
+      <li>
+        ✓ 
+         Schonend gefriergetrocknet. Jetzt im nu3 Shop bestellen!
+      </li>
+    </ul>
+  </div>
+</div>
+`;

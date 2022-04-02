@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sort : Snapshot 1`] = `
+<div
+  className="sort"
+>
+  <select
+    data-testid="sort-select"
+    onChange={[Function]}
+    value="Random"
+  >
+    <option
+      data-testid="sort-select-option"
+      value="Random"
+    >
+      Random
+    </option>
+    <option
+      data-testid="sort-select-option"
+      value="Alphabetical"
+    >
+      Alphabetical
+    </option>
+    <option
+      data-testid="sort-select-option"
+      value="Low"
+    >
+      Price: Low to High
+    </option>
+    <option
+      data-testid="sort-select-option"
+      value="High"
+    >
+      Price: High to Low
+    </option>
+  </select>
+</div>
+`;

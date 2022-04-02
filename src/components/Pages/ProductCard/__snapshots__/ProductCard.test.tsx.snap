@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard : Snapshot 1`] = `
+<div
+  className="product-card-container"
+>
+  <div
+    className="product-card"
+  >
+    <div
+      className="loading"
+    >
+      Loading ...
+    </div>
+    <button
+      className="back"
+      data-testid="back"
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-chevron-left"
+      />
+    </button>
+  </div>
+</div>
+`;
