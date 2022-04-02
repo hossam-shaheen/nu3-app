@@ -1,15 +1,35 @@
-import { FunctionComponent, useState, ChangeEvent } from 'react';
+import { FunctionComponent, useState, ChangeEvent, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { SortProps } from 'src/interfaces/interfaces';
 import classes from './Sort.module.css';
 
 export const Sort: FunctionComponent<{ onSort: SortProps["onSort"] }> = ({ onSort }): JSX.Element => {
     const [sort, setSort] = useState("Random");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchQuery = searchParams.get("searchQuery");
+    const sortQuery = searchParams.get("sortQuery");
 
     const onSortChange = (e: ChangeEvent<HTMLSelectElement>): void => {
         const sortKeyWord = e.target.value;
         setSort(sortKeyWord);
         onSort(sortKeyWord);
+        if (searchQuery) {
+            setSearchParams({
+                searchQuery: searchQuery,
+                sortQuery: sortKeyWord
+            });
+        } else {
+            setSearchParams({});
+        }
     }
+
+    useEffect(() => {
+        if (sortQuery) {
+            setSort(sortQuery);
+            onSort(sortQuery);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return <div className={classes.sort}>
         <select value={sort} onChange={e => onSortChange(e)} data-testid="sort-select">

@@ -7,7 +7,6 @@ import Sort from '../../Components/Shared/Sort/Sort';
 import { SEARCH_BASE_URL } from '../../../constants/APIs';
 import classes from "./Home.module.css";
 import useDebounce from 'src/customHook/useDebounce';
-import { useSearchParams } from 'react-router-dom';
 
 export const Home: FunctionComponent = (): JSX.Element => {
 

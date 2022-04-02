@@ -7,6 +7,7 @@ const SearchBar: FunctionComponent<{ onSearch: ProductsSearchProps["onSearch"] }
     const [searchResult, setSearchResult] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get("searchQuery");
+    const sortQuery = searchParams.get("sortQuery");
 
     const onSearchChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const searchKeyWord = e.target.value;
@@ -17,6 +18,12 @@ const SearchBar: FunctionComponent<{ onSearch: ProductsSearchProps["onSearch"] }
             setSearchParams({
                 searchQuery: searchKeyWord
             });
+            if (sortQuery) {
+                setSearchParams({
+                    searchQuery: searchKeyWord,
+                    sortQuery: sortQuery
+                });
+            }
         } else {
             setSearchParams({});
         }
