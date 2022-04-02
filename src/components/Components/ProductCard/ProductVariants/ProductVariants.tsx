@@ -9,6 +9,11 @@ export const ProductVariants: FunctionComponent<{ productVariants: (ProductVaria
 
     const optionValues = productVariants?.options.map((option: OptionsType) => option.values).flat(1) || [];
 
+    const currencyFormat = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'EUR'
+    });
+
     useEffect((): void => {
         optionValues && setSelectedOption(optionValues[0]);
         //eslint-disable-next-line
@@ -31,9 +36,9 @@ export const ProductVariants: FunctionComponent<{ productVariants: (ProductVaria
                 </option>
             })}
         </select>}
-        <div className={classes["product-price"]}>
-            <p>&#x20AC; {selectedVariant?.price}</p>
-        </div>
+        {selectedVariant && <div className={classes["product-price"]}>
+            <p>{currencyFormat.format(selectedVariant?.price)}</p>
+        </div>}
     </div>
 }
 export default ProductVariants;

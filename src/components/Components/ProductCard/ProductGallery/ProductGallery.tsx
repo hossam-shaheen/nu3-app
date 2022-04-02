@@ -14,9 +14,9 @@ export const ProductGallery: FunctionComponent<{ mainImage: ProductAttributeProp
     useEffect(() => {
         if (mainImage) {
             setCurrentMainImage({
-                id: +mainImage?.id,
-                src: mainImage?.src,
-                alt: mainImage?.alt,
+                id: mainImage.id,
+                src: mainImage.src,
+                alt: mainImage.alt,
             })
         }
     }, [mainImage]);

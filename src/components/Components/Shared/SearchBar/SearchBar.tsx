@@ -18,9 +18,8 @@ const SearchBar: FunctionComponent<{ onSearch: ProductsSearchProps["onSearch"] }
             value={searchResult}
             onChange={onSearchChange}
         />
-        <button>
-            <i className="fas fa-search"></i>
-        </button>
+
+
     </div>);
 
 }

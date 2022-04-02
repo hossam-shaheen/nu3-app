@@ -1,6 +1,5 @@
 import { FunctionComponent } from 'react';
 import { ProductAttributeProps } from 'src/interfaces/interfaces';
-
 import classes from './ProductAttribute.module.css';
 
 

@@ -35,8 +35,7 @@ exports[`Products pass array of one product : Snapshot 1`] = `
       <p
         className="product-price"
       >
-        50.99
-         €
+        €50.99
       </p>
       <button>
          

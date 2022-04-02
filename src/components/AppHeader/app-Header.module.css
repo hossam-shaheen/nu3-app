@@ -1,5 +1,5 @@
 .App-Header {
-  background-color: #282c34;
+  background-color: var(--secondary);
   min-height: 60px;
   max-width: 1200px;
   display: flex;
@@ -9,5 +9,4 @@
   font-size: calc(10px + 2vmin);
   color: white;
   margin: 0 auto;
-  display: none;
 }

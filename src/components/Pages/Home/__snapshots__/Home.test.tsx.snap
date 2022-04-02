@@ -13,11 +13,6 @@ exports[`Home : Snapshot 1`] = `
       type="text"
       value=""
     />
-    <button>
-      <i
-        className="fas fa-search"
-      />
-    </button>
   </div>
 </div>
 `;

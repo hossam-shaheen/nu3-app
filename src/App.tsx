@@ -11,7 +11,7 @@ import {
 
 function App() {
   return <BrowserRouter>
-    <AppHeader title="Demo Header" />
+    <AppHeader title="nu3 App" />
     <Showcase>
       {/* Your components goes here... */}
       <Routes>
