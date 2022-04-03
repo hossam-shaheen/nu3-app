@@ -1,4 +1,4 @@
-# nu3-app App
+# nu3 App
 
 Application for Searching for products and sort them.
 
