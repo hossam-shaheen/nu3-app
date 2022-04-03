@@ -1,24 +1,23 @@
 .error-message,
 .no-results {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 28px;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 28px;
+  width: 100%;
 }
 
 .error-message {
-    color: var(--error);
+  color: var(--error);
 }
 
 .error-message i {
-    color: var(--error);
-    margin-right: 8px;
+  color: var(--error);
+  margin-right: 8px;
 }
 
-
 .no-results {
-    color: var(--darkGray);
+  color: var(--darkGray);
 }

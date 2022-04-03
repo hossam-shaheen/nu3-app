@@ -6,8 +6,7 @@ Application for Searching for products and sort them.
 
 - Search for product
 - Sort Products (Random - alphabet - Low to High - High to Low)
-- navigate to a product page. 
-
+- navigate to a product page.
 
 ## Available Scripts
 

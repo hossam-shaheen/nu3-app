@@ -8,7 +8,7 @@ exports[`ResultCount pass count 0: Snapshot 1`] = `
     0
      
     result
-      
+     
   </span>
 </p>
 `;
@@ -21,7 +21,7 @@ exports[`ResultCount pass count 1: Snapshot 1`] = `
     1
      
     result
-      
+     
   </span>
 </p>
 `;
@@ -34,7 +34,7 @@ exports[`ResultCount pass count 2: Snapshot 1`] = `
     2
      
     results
-      
+     
   </span>
 </p>
 `;

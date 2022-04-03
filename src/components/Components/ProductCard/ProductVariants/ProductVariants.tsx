@@ -1,44 +1,71 @@
-import { FunctionComponent, useState, ChangeEvent, useEffect } from 'react';
-import { OptionsType, ProductVariantsProps, VariantType } from 'src/interfaces/interfaces';
-import classes from './ProductVariants.module.css';
+import { FunctionComponent, useState, ChangeEvent, useEffect } from "react";
+import {
+  OptionsType,
+  ProductVariantsProps,
+  VariantType,
+} from "src/interfaces/interfaces";
+import classes from "./ProductVariants.module.css";
 
+export const ProductVariants: FunctionComponent<{
+  productVariants: ProductVariantsProps | null;
+}> = ({ productVariants }): JSX.Element => {
+  const [selectedOption, setSelectedOption] = useState<string | undefined>();
+  const [selectedVariant, setSelectedVariant] = useState<
+    VariantType | undefined
+  >();
 
-export const ProductVariants: FunctionComponent<{ productVariants: (ProductVariantsProps | null) }> = ({ productVariants }): JSX.Element => {
-    const [selectedOption, setSelectedOption] = useState<string | undefined>();
-    const [selectedVariant, setSelectedVariant] = useState<VariantType | undefined>();
+  const optionValues =
+    productVariants?.options
+      .map((option: OptionsType) => option.values)
+      .flat(1) || [];
 
-    const optionValues = productVariants?.options.map((option: OptionsType) => option.values).flat(1) || [];
+  const currencyFormat = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "EUR",
+  });
 
-    const currencyFormat = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'EUR'
-    });
+  useEffect((): void => {
+    optionValues && setSelectedOption(optionValues[0]);
+    //eslint-disable-next-line
+  }, []);
 
-    useEffect((): void => {
-        optionValues && setSelectedOption(optionValues[0]);
-        //eslint-disable-next-line
-    }, []);
+  useEffect((): void => {
+    setSelectedVariant(
+      productVariants?.variants.find(
+        (variant: VariantType) => variant.title === selectedOption
+      )
+    );
+    //eslint-disable-next-line
+  }, [selectedOption]);
 
-    useEffect((): void => {
-        setSelectedVariant(productVariants?.variants.find((variant: VariantType) => variant.title === selectedOption));
-        //eslint-disable-next-line
-    }, [selectedOption]);
+  const onSelectVariants = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOption(e.target.value);
+  };
 
-    const onSelectVariants = (e: ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption(e.target.value);
-    }
-
-    return <div className={classes["product-variants"]}>
-        {optionValues.length > 0 && <select value={selectedOption} onChange={onSelectVariants} data-testid="product-variants-select">
-            {optionValues?.length > 0 && optionValues.map((option) => {
-                return <option key={option} value={option}>
-                    {option}
+  return (
+    <div className={classes["product-variants"]}>
+      {optionValues.length > 0 && (
+        <select
+          value={selectedOption}
+          onChange={onSelectVariants}
+          data-testid="product-variants-select"
+        >
+          {optionValues?.length > 0 &&
+            optionValues.map((option) => {
+              return (
+                <option key={option} value={option}>
+                  {option}
                 </option>
+              );
             })}
-        </select>}
-        {selectedVariant && <div className={classes["product-price"]}>
-            <p>{currencyFormat.format(selectedVariant?.price)}</p>
-        </div>}
+        </select>
+      )}
+      {selectedVariant && (
+        <div className={classes["product-price"]}>
+          <p>{currencyFormat.format(selectedVariant?.price)}</p>
+        </div>
+      )}
     </div>
-}
+  );
+};
 export default ProductVariants;
